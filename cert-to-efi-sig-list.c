@@ -108,7 +108,7 @@ main(int argc, char *argv[])
 
 	PkCertData->SignatureOwner = owner; 
 
-	FILE *f = fopen(efifile, "w");
+	FILE *f = fopen(efifile, "wb");
 	if (!f) {
 		fprintf(stderr, "failed to open efi file %s: ", efifile);
 		perror("");

@@ -51,7 +51,7 @@ main(int argc, char *argv[])
 	name = malloc(strlen(certfile)+10);
 	esl_name = malloc(strlen(certfile)+10);
 
-	int fd = open(efifile, O_RDONLY);
+	int fd = open(efifile, O_RDONLY | O_BINARY);
 	if (fd < 0) {
 		fprintf(stderr, "Failed to open file %s: ", efifile);
 		perror("");
@@ -116,12 +116,12 @@ main(int argc, char *argv[])
 			printf("file %s: Guid %s\n", name, guid_to_str(guid));
 
 			if (output_esl) {
-				g = fopen(esl_name, "w");
+				g = fopen(esl_name, "wb");
 				fwrite(sl, 1, sl->SignatureListSize, g);
 				fclose(g);
 			}
 
-			g = fopen(name, "w");
+			g = fopen(name, "wb");
 			fwrite(sd->SignatureData, 1, sl->SignatureSize - OFFSET_OF(EFI_SIGNATURE_DATA, SignatureData), g);
 			printf("Written %d bytes\n", sl->SignatureSize - (UINT32)OFFSET_OF(EFI_SIGNATURE_DATA, SignatureData));
 			fclose(g);

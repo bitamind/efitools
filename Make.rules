@@ -13,7 +13,7 @@ ARCH3264 =
 else
 $(error unknown architecture $(ARCH))
 endif
-INCDIR	   = -I$(TOPDIR)include/ -I/usr/include/efi -I/usr/include/efi/$(ARCH) -I/usr/include/efi/protocol
+INCDIR	   = -I$(TOPDIR)include/ -I$(TOPDIR)include/efi -I/usr/include/efi -I/usr/include/efi/$(ARCH) -I/usr/include/efi/protocol
 CPPFLAGS   = -DCONFIG_$(ARCH)
 CFLAGS	   = -O2 -g $(ARCH3264) -fpic -Wall -fshort-wchar -fno-strict-aliasing -fno-merge-constants -fno-stack-protector -ffreestanding -fno-stack-check
 LDFLAGS	   = -nostdlib
